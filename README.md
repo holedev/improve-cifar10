@@ -24,12 +24,19 @@ HeheNet is a custom CNN with the following architecture:
 
 **Data Augmentation**: Random crop with padding, random horizontal flip, and normalization based on https://github.com/kuangliu/pytorch-cifar/issues/19 .
 
-## 📋 Requirements
+## ☁️ Google Colab Setup
 
-Install dependencies using the provided requirements file:
+### One-Click Button (Recommended)
 
-```bash
-pip install -r requirements.txt
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/holedev/improve-cifar10/blob/main/Improve_Cifar10_with_HeheNet.ipynb)
+
+### Upload Project to Colab
+Upload the entire project folder to your Colab environment or mount Google Drive:
+
+```python
+from google.colab import drive
+drive.mount('/content/drive')
+%cd /content/drive/MyDrive/your-colab-path/improve-cifar10
 ```
 
 ## 🚀 Setup Local 
@@ -49,24 +56,6 @@ source .venv/bin/activate  # On Windows: .venv\Scripts\activate
 ### 3. Install Dependencies
 ```bash
 pip install -r requirements.txt
-```
-
-## ☁️ Google Colab Setup
-
-### 1. Upload Project to Colab
-Upload the entire project folder to your Colab environment or mount Google Drive:
-
-```python
-from google.colab import drive
-drive.mount('/content/drive')
-%cd /content/drive/MyDrive/your-colab-path/improve-cifar10
-```
-
-### 2. Check GPU Availability (Recommended)
-```python
-import torch
-print(f"CUDA available: {torch.cuda.is_available()}")
-print(f"Device: {torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')}")
 ```
 
 ## 🏋️ Training + Testing
@@ -146,3 +135,4 @@ improve-cifar10/
 ![Google Colab Train](images/colab_train.png)
 
 ![Google Colab Test](images/colab_test.png)
+
