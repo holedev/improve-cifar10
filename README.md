@@ -22,7 +22,7 @@ HeheNet is a custom CNN with the following architecture:
 - **Fully Connected 1**: 256×4×4 → 512, ReLU, Dropout(0.5)
 - **Fully Connected 2**: 512 → 10 (output classes)
 
-**Data Augmentation**: Random crop with padding, random horizontal flip, and normalization.
+**Data Augmentation**: Random crop with padding, random horizontal flip, and normalization based on https://github.com/kuangliu/pytorch-cifar/issues/19 .
 
 ## 📋 Requirements
 
@@ -36,7 +36,7 @@ pip install -r requirements.txt
 
 ### 1. Clone and Navigate
 ```bash
-git clone <repo-url>
+git clone git@github.com:holedev/improve-cifar10.git
 cd improve-cifar10
 ```
 
@@ -59,10 +59,10 @@ Upload the entire project folder to your Colab environment or mount Google Drive
 ```python
 from google.colab import drive
 drive.mount('/content/drive')
-%cd /content/drive/MyDrive/improve-cifar10
+%cd /content/drive/MyDrive/your-colab-path/improve-cifar10
 ```
 
-### 2. Check GPU Availability
+### 2. Check GPU Availability (Recommended)
 ```python
 import torch
 print(f"CUDA available: {torch.cuda.is_available()}")
@@ -94,9 +94,9 @@ python ./src/train.py --data-path ./path/custom_model.pth
 python ./src/test.py
 ```
 
-### Evaluate Specific Model
+### Testing with Custom Model Path (prevtrain model)
 ```bash
-python ./src/test.py --data-path ./src/result/HeheNet_100epochs.pth
+python ./src/test.py --data-path ./src/prevtrain/HeheNet_100epochs.pth
 ```
 
 ### Sample test output:
@@ -135,7 +135,14 @@ improve-cifar10/
     ├── test.py             # Evaluation script with CLI args
     ├── utils.py            # Helper functions and class names
     └── result/             # Trained model weights
-        ├── HeheNet_20epochs.pth
-        ├── HeheNet_50epochs.pth
-        └── HeheNet_100epochs.pth
+    └── prevtrain/          # Previous trained models
+        └── HeheNet_100epochs.pth 
+        └── HeheNet_50epochs.pth  
+        └── HeheNet_20epochs.pth
 ```
+
+## Screenshots
+### Google Colab Training and Testing
+![Google Colab Train](images/colab_train.png)
+
+![Google Colab Test](images/colab_test.png)

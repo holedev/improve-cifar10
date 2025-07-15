@@ -23,9 +23,6 @@ def train(net, trainloader, device, criterion, optimizer, num_epochs=5):
             optimizer.step()
 
             running_loss += loss.item()
-            # if i % 2000 == 1999:
-            #     print(f'[{epoch + 1}, {i + 1:5d}] loss: {running_loss / 2000:.3f}')
-            #     running_loss = 0.0
         epoch_loss = running_loss / len(trainloader)
         print(f"📘 Epoch [{epoch + 1:3d}/{num_epochs}] - Loss: {epoch_loss:.4f}")
 
