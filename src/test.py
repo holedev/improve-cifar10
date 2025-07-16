@@ -5,7 +5,7 @@ import torchvision.transforms as transforms
 
 from model import HeheNet
 from utils import get_default_device, classes
-from config import result_path
+from config import weight_result_path, batch_size
 
 def evaluate(net, testloader, device):
     correct_pred = {classname: 0 for classname in classes}
@@ -42,15 +42,14 @@ if __name__ == "__main__":
     parser.add_argument(
         "--data-path",
         type=str,
-        default=result_path,
-        help=f"Path to trained model (.pth). Default: {result_path}"
+        default=weight_result_path,
+        help=f"Path to trained model (.pth). Default: {weight_result_path}"
     )
     args = parser.parse_args()
 
     device = get_default_device()
     net = HeheNet().to(device)
     net.load_state_dict(torch.load(args.data_path, map_location=device))
-    net.eval()
 
     transform_test = transforms.Compose([
         transforms.ToTensor(),
@@ -60,7 +59,7 @@ if __name__ == "__main__":
     testset = torchvision.datasets.CIFAR10(
         root='./data', train=False, download=True, transform=transform_test)
     testloader = torch.utils.data.DataLoader(
-        testset, batch_size=20, shuffle=False, num_workers=2)
+        testset, batch_size, shuffle=False, num_workers=2)
 
     print("=" * 50)
     print(f"Model loaded from: {args.data_path}")
