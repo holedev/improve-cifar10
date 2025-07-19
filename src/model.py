@@ -10,6 +10,9 @@ import torch.nn.functional as F
 
 class HeheNet(nn.Module):
     def __init__(self):
+        """
+        Initialize the HeheNet convolutional neural network architecture with four convolutional layers, batch normalization, max pooling, dropout, and two fully connected layers for classification.
+        """
         super().__init__()
         self.conv1 = nn.Conv2d(3, 32, 3, padding=1)
         self.bn1 = nn.BatchNorm2d(32)

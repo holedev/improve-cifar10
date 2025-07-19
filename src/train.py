@@ -14,6 +14,19 @@ from config import num_epochs, weight_result_path, batch_size, chart_result_fold
 
 
 def evaluate(model, dataloader, device, criterion):
+    """
+    Evaluate the model on a dataset and compute average loss and accuracy.
+    
+    Parameters:
+        model: The neural network model to evaluate.
+        dataloader: DataLoader providing the evaluation dataset.
+        device: Device on which computation is performed.
+        criterion: Loss function used to compute the loss.
+    
+    Returns:
+        avg_loss (float): Average loss over the dataset.
+        accuracy (float): Accuracy percentage over the dataset.
+    """
     model.eval()
     total_loss = 0.0
     correct = 0
@@ -32,6 +45,18 @@ def evaluate(model, dataloader, device, criterion):
     return total_loss / len(dataloader), 100 * correct / total
 
 def train(net, trainloader, valloader, device, criterion, optimizer, num_epochs=5):
+    """
+    Train a neural network model for a specified number of epochs, tracking and returning training and validation loss and accuracy histories.
+    
+    Parameters:
+        num_epochs (int, optional): Number of training epochs to run. Defaults to 5.
+    
+    Returns:
+        train_losses (list of float): Training loss for each epoch.
+        train_accs (list of float): Training accuracy (%) for each epoch.
+        val_losses (list of float): Validation loss for each epoch.
+        val_accs (list of float): Validation accuracy (%) for each epoch.
+    """
     train_losses, train_accs = [], []
     val_losses, val_accs = [], []
 
