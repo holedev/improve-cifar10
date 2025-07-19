@@ -8,6 +8,16 @@ from utils import get_default_device, classes
 from config import weight_result_path, batch_size
 
 def evaluate(net, testloader, device):
+    """
+    Evaluate a trained neural network on a test dataset and print per-class and overall accuracy.
+    
+    Parameters:
+        net: The trained neural network model to evaluate.
+        testloader: DataLoader providing the test dataset.
+        device: The device (CPU or GPU) on which evaluation is performed.
+    
+    This function sets the model to evaluation mode, disables gradient computation, and iterates over the test dataset to compute and display the accuracy for each class and the overall accuracy.
+    """
     correct_pred = {classname: 0 for classname in classes}
     total_pred = {classname: 0 for classname in classes}
     correct = 0
